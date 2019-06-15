@@ -1,5 +1,8 @@
 package br.com.casadocodigo.models;
 
+import java.util.List;
+
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -7,14 +10,17 @@ import javax.persistence.Id;
 
 @Entity
 public class Produto {
-	
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 
 	private String titulo;
 	private String descricao;
-	private int pagina;
+	private int paginas;
+
+	@ElementCollection
+	private List<Preco> precos;
 
 	public String getTitulo() {
 		return titulo;
@@ -32,17 +38,33 @@ public class Produto {
 		this.descricao = descricao;
 	}
 
-	public int getPagina() {
-		return pagina;
+	public int getPaginas() {
+		return paginas;
 	}
 
-	public void setPagina(int pagina) {
-		this.pagina = pagina;
+	public void setPaginas(int paginas) {
+		this.paginas = paginas;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public List<Preco> getPrecos() {
+		return precos;
+	}
+
+	public void setPrecos(List<Preco> precos) {
+		this.precos = precos;
 	}
 
 	@Override
 	public String toString() {
-		return "Produto [titulo=" + titulo + ", descricao=" + descricao + ", pagina=" + pagina + "]";
+		return "Produto [titulo=" + titulo + ", descricao=" + descricao + ", pagina=" + paginas + "]";
 	}
 
 }
