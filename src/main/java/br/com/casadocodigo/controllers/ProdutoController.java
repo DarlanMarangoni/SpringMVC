@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.casadocodigo.daos.ProdutoDAO;
 import br.com.casadocodigo.models.Produto;
@@ -27,10 +28,12 @@ public class ProdutoController {
 	}
 	
 	@RequestMapping(method=RequestMethod.POST)
-	public String save(Produto produto) {
-		System.out.println(produto);
+	public ModelAndView save(Produto produto, RedirectAttributes redirectAttributes) {
 		produtoDAO.save(produto);
-		return "produtos/ok";
+		//permite enviar parametros para metodo GET que duram apenas uma requisicao!!
+		redirectAttributes.addFlashAttribute("sucesso", "Produto cadastrado com sucesso!");
+		
+		return new ModelAndView("redirect:produtos");
 	}
 	
 	@RequestMapping(method=RequestMethod.GET)
