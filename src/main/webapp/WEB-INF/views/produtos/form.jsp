@@ -29,6 +29,11 @@
 			<label>Paginas</label> <input type="text" name="paginas">
 			<form:errors path="paginas" />
 		</div>
+		<div>
+			<label>Data de lançamento</label>
+			<input type="text" name="dataLancamento">
+			<form:errors path="dataLancamento"/>
+		</div>
 		<c:forEach items="${tipos}" var="tipo" varStatus="status">
 
 			<div>
